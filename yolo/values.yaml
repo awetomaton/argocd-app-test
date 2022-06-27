@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: {{ (lookup "v1" "ConfigMap" "argo-cd-test" "test-cm").data.image }}
+  repository: {{ (lookup "v1" "ConfigMap" "argo-cd-test" "test-cm").data.repository }}
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: {{ (lookup "v1" "ConfigMap" "argo-cd-test" "test-secret").data.port }}
+  port: {{ (lookup 'v1' 'ConfigMap' 'argo-cd-test" "test-secret").data.port }}
 
 ingress:
   enabled: false
